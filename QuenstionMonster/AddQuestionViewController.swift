@@ -76,9 +76,10 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
                                 
                                 let firestoreDatabase = Firestore.firestore()
                                 var firestoreReferance : DocumentReference? = nil
-                                let firestorePost = ["imageUrl" : imageUrl!, "postedBy" : Auth.auth().currentUser!.email!,
+                                let firestorePost = ["imageUrl" : imageUrl!, "postedBy": userName,
+                                                     "email" : Auth.auth().currentUser!.email!,
                                                      
-                                                     "Explanation" : self.textFieldNot.text!,"Class" : self.textFieldClass.text!,"Lesson" : self.textFieldLesson.text!, "date" : FieldValue.serverTimestamp(), "likes" : 0] as [String : Any]
+                                                     "Explanation" : self.textFieldNot.text!,"Class" : self.textFieldClass.text!,"Lesson" : self.textFieldLesson.text!, "date" : FieldValue.serverTimestamp(), "save" : 0] as [String : Any]
                                 
                                 firestoreReferance = firestoreDatabase.collection("Posts").addDocument(data: firestorePost, completion: { (error) in
                                     if error != nil {

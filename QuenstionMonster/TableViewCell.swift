@@ -15,7 +15,8 @@ class TableViewCell: UITableViewCell {
     
     @IBOutlet weak var userImageView: UIImageView!
     
-    @IBOutlet weak var likeLabel: UILabel!
+   
+    @IBOutlet weak var saveLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,6 +29,7 @@ class TableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    @IBAction func likeButtonClicked(_ sender: Any) {
+    @IBAction func saveButtonClicked(_ sender: Any) {
     }
+    
 }

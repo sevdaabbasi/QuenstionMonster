@@ -19,16 +19,18 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     
+    
+    var signUpCustomButton = CustomButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        setupBottomButtonConstraints()
+        addActionToBottomButton()
+       signUpCustomButton.setTitle("SignUp", for: .normal)
         
     }
-    @IBAction func SignUpClicked1(_ sender: Any) {
-        signUp()
-    }
-    
+   
     func signUp() {
            guard let email = emailTextField.text, !email.isEmpty else {
                showAlert(message: "E-posta adresi boş bırakılamaz.")
@@ -84,6 +86,30 @@ class SignUpViewController: UIViewController {
               }
            }
        
+    
+    func setupBottomButtonConstraints() {
+        view.addSubview(signUpCustomButton)
+       signUpCustomButton.translatesAutoresizingMaskIntoConstraints = false
+       signUpCustomButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+       signUpCustomButton.widthAnchor.constraint(equalToConstant: 330).isActive = true
+       signUpCustomButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+       signUpCustomButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -170).isActive = true
+    }
+    
+    
+    func addActionToBottomButton() {
+        signUpCustomButton.addTarget(self, action: #selector(signUpClicked), for: .touchUpInside)
+        
+    }
+    @objc func signUpClicked() {
+        signUpCustomButton.shake()
+        signUp()
+       }
+    
+   
+    @IBAction func signInClicked(_ sender: Any) {
+        performSegue(withIdentifier: "SignInSegue", sender: self)
+    }
     
     func showAlert(message: String) {
            let alert = UIAlertController(title: "Uyarı", message: message, preferredStyle: .alert)
